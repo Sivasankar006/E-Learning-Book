@@ -1,0 +1,105 @@
+<app-admin-header class="sticky-top"></app-admin-header>
+<div class="col-12 scroll-container">
+    <div class="container mt-0" id="admin-form-container">
+        <h4 class="text-center Order">{{this.title}}</h4>
+        <div class="form-background ">
+            <form [formGroup]="libraryForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="bookname">Book Name</label>
+                    <input id="bookname" type="text" formControlName="bookname" class="form-control"
+                        [ngClass]="{'is-invalid': f.bookname.touched && f.bookname.invalid}">
+                    <div *ngIf="f.bookname.touched && f.bookname.invalid" class="invalid-feedback">
+                        Book Name is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="author">Author Name</label>
+                    <input id="author" type="text" formControlName="author" class="form-control"
+                        [ngClass]="{'is-invalid': f.author.touched && f.author.invalid}">
+                    <div *ngIf="f.author.touched && f.author.invalid" class="invalid-feedback">
+                        Author Name is required.
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="imgurl">Book Image URL</label>
+                    <input id="imgurl" type="text" formControlName="imgurl" class="form-control"
+                        [ngClass]="{'is-invalid': f.imgurl.touched && f.imgurl.invalid}">
+                    <div *ngIf="f.imgurl.touched && f.imgurl.invalid" class="invalid-feedback">
+                        Book Image UR is required.
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label>Choose Book Image</label>
+
+                    <!-- Option 1: Image URL -->
+                    <button type="button" class="btn btn-outline-primary btn-sm me-2" (click)="useUrl = true">Paste
+                        Image URL</button>
+
+                    <!-- Option 2: Upload File -->
+                    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="useUrl = false">Upload
+                        Image</button>
+
+                    <div *ngIf="useUrl">
+                        <label for="imgurl">Image URL</label>
+                        <input id="imgurl" type="text" formControlName="imgurl" class="form-control"
+                            [ngClass]="{'is-invalid': f.imgurl.touched && f.imgurl.invalid}">
+                        <div *ngIf="f.imgurl.touched && f.imgurl.errors?.invalidUrl" class="text-danger">
+                            Please provide a valid image URL or upload an image.
+                        </div>
+                    </div>
+
+                    <div *ngIf="!useUrl" class="mt-2">
+                        <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control-file">
+                        <div *ngIf="fileError" class="text-danger mt-1">{{ fileError }}</div>
+                    </div>
+
+                    <!-- Preview -->
+                    <div *ngIf="libraryForm.value.imgurl" class="mt-2">
+                        <img [src]="libraryForm.value.imgurl" alt="Preview" class="img-thumbnail" width="150">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="price">price</label>
+                    <input id="price" type="text" formControlName="price" class="form-control"
+                        [ngClass]="{'is-invalid': f.price.touched && f.price.invalid}">
+                    <div *ngIf="f.price.touched && f.price.invalid" class="invalid-feedback">
+                        <div *ngIf="f.price.errors.required">Price is required.</div>
+                        <div *ngIf="f.price.errors.pattern">Price must be a valid number.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" formControlName="category" class="form-control"
+                        [ngClass]="{'is-invalid': f.category.touched && f.category.invalid}">
+                        <option value="">Select Category</option>
+                        <option *ngFor="let category of categories" [value]="category.value">{{ category.label }}
+                        </option>
+                    </select>
+                    <div *ngIf="f.category.touched && f.category.invalid" class="invalid-feedback">
+                        Category is required.
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="description">description</label>
+                    <ckeditor [editor]="Editor" formControlName="description" data="description"></ckeditor>
+                    <div *ngIf="f.description.touched && f.description.invalid" class="invalid-feedback">
+                        Description is required.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

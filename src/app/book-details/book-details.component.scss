@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.book-card {
+  text-align: center;
+}
+
+.book-img {
+  max-width: 30%;
+  max-height: 40%;
+  margin-top: 29px;
+  border-radius: 10px;
+}
+
+.book-description {
+  margin-top: 20px;
+  text-align: justify;
+}
+
+
+
+@media (max-width: 767px) {
+  .book-img {
+    max-width: 80%;
+    max-height: none;
+  }
+
+  .book-card {
+    width: 90%;
+    margin: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .book-img {
+    max-width: 30%;
+    max-height: 40%;
+  }
+
+  .book-card {
+    width: auto;
+    margin: 20px;
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.download-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 21px;
+}

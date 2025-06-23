@@ -1,0 +1,16 @@
+@media (max-width: 767px) {
+    .table-responsive {
+      overflow-x: auto;
+    }
+  
+    table {
+      min-width: 600px; // allow scrolling
+    }
+  
+    .btn {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  }
+  
+  

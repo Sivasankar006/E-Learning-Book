@@ -1,0 +1,98 @@
+<app-header class="sticky-top"></app-header>
+
+<div class="container mt-3" *ngIf="!this._id">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the Order books page</h1>
+        <p class="lead">Order your favorite books, authors, and more.</p>
+        <input type="text" class="form-control" placeholder="Search for book & author name & price ..."
+            [(ngModel)]="searchTerm" (input)="filterBooks()">
+    </div>
+
+    <div *ngIf="filteredBooks.length === 0" class="text-center">
+        <p class="lead">No record found</p>
+    </div>
+
+    <div class="row mt-4" *ngIf="filteredBooks.length > 0">
+        <div class="col-md-4 col-sm-6 mb-4" *ngFor="let book of filteredBooks">
+            <div class="card">
+                <div *ngIf="book.comingSoon" class="sticker">Coming Soon</div>
+                <img [src]="book.imgurl" class="card-img-top img-fluid" alt="{{ book.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.bookname }}</h5>
+                    <p class="card-text" [innerHTML]="book.description | slice:0:100">{{ book.description }}</p>
+                    <p class="card-text">Price : {{book.price ? book.price : '--'}}</p>
+                    <p class="card-text">Author Name : {{book.author ? book.author : '--'}}</p>
+                    <a class="btn btn-primary" (click)="orderbook(book)">Order Book</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-12 mt-5" *ngIf="this._id">
+    <div class="container" id="admin-form-container">
+        <h4 class="Order">Order Your Book</h4>
+        <div class="form-background ">
+            <form [formGroup]="libraryForm" (ngSubmit)="onSubmit()">
+
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" formControlName="name" class="form-control" placeholder="Enter name"
+                        [ngClass]="{'is-invalid': f.name.touched && f.name.invalid}">
+                    <div *ngIf="f.name.touched && f.name.invalid" class="invalid-feedback">
+                        Name is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="text" formControlName="email" class="form-control" placeholder="Enter email"
+                        [ngClass]="{'is-invalid': f.email.touched && f.email.invalid, 'disabled-input': isDisabled}">
+                    <div *ngIf="f.email.touched && f.email.invalid" class="invalid-feedback">
+                        Email Name is required.
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="bookname">Book Name</label>
+                    <input id="bookname" type="text" formControlName="bookname" class="form-control"
+                        placeholder="Enter book name"
+                        [ngClass]="{'is-invalid': f.bookname.touched && f.bookname.invalid , 'disabled-input': isDisabled}">
+                    <div *ngIf="f.bookname.touched && f.bookname.invalid" class="invalid-feedback">
+                        Book Name is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">price</label>
+                    <input id="price" type="text" formControlName="price" class="form-control" placeholder="Enter price"
+                        [ngClass]="{'is-invalid': f.price.touched && f.price.invalid, 'disabled-input': isDisabled}">
+                    <div *ngIf="f.price.touched && f.price.invalid" class="invalid-feedback">
+                        <div *ngIf="f.price.errors.required">Price is required.</div>
+                        <div *ngIf="f.price.errors.pattern">Price must be a valid number.</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" formControlName="description" id="description"
+                        placeholder="Enter description"></textarea>
+                    <div *ngIf="f.description.touched && f.description.invalid" class="invalid-feedback">
+                        Description is required.
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn btn-danger mt-3" (click)="cancel()">Cancle</button>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

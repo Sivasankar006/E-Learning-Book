@@ -1,0 +1,40 @@
+<app-admin-header class="sticky-top"></app-admin-header>
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h3>Admin Profile Details</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/043/900/708/small/user-profile-icon-illustration-vector.jpg" class="img-fluid rounded" alt="Admin Image">
+            <div class="admin-profile">Admin</div>
+          </div>
+          <div class="col-md-8">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Name:</strong> {{ userDetails.name }}
+              </li>
+              <li class="list-group-item">
+                <strong>Email:</strong> {{ userDetails.email }}
+              </li>
+              <li class="list-group-item">
+                <strong>Mobile No:</strong> {{ userDetails.mobileNo }}
+              </li>
+              <li class="list-group-item">
+                <strong>Address:</strong> {{ userDetails.address }}
+              </li>
+              <li class="list-group-item">
+                <strong>Role:</strong> {{ userDetails.role }}
+              </li>
+              <li class="list-group-item">
+                <strong>Joined Date:</strong> {{ userDetails.joinedDate | date }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <app-footer></app-footer>

@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.sticky-top {
+    z-index: 1020; /* Ensures it stays above other elements */
+    background-color: #fff; /* Ensures the background color is consistent */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for better separation */
+  }
+  
+  body {
+    background-image: url('https://media.istockphoto.com/id/1151849228/vector/library-book.jpg?s=612x612&w=0&k=20&c=GcQEMiL1ZwjiIh38S8LkNwLaYcIi9ERQ4IVmBMTxvQY='); /* ✅ path to your image */
+    background-size: cover;            /* Scale image to cover entire screen */
+    background-repeat: no-repeat;      /* Prevent tiling */
+    background-position: center;       /* Center the image */
+    background-attachment: fixed; 
+    // font-family: cursive !important;    /* Keep background fixed on scroll */
+  }

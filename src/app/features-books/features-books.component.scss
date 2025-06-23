@@ -1,0 +1,53 @@
+.container {
+    max-width: 1200px;
+}
+
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    position: relative;
+    /* Added to position the sticker relative to the card */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.sticker {
+    position: absolute;
+    top: -21px;
+    right: -1px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.display-4{
+    font-weight: 500;
+  margin-top: -20px;
+
+}
+

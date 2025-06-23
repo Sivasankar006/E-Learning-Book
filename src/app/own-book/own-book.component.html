@@ -1,0 +1,62 @@
+<app-header class="sticky-top"></app-header>
+<div class="container mt-2">
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to your book publishing page</h1>
+    <p class="lead">Please fill out the form with your personal book details.</p>
+</div>
+</div>
+
+<div class="col-12">
+    <div class="container mt-2" id="admin-form-container">
+        <h4 class="text-center Publish">Publish your book independently</h4>
+        <div class="form-background ">
+            <form [formGroup]="libraryForm" (ngSubmit)="onSubmit()">
+               
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input id="name" type="text" formControlName="name" class="form-control" placeholder="Enter Your Name"
+                        [ngClass]="{'is-invalid': f.name.touched && f.name.invalid}">
+                    <div *ngIf="f.name.touched && f.name.invalid" class="invalid-feedback">
+                         Name is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input id="email" type="text" formControlName="email" class="form-control" placeholder="Enter Your Email"
+                        [ngClass]="{'is-invalid': f.email.touched && f.email.invalid, 'disabled-input': isDisabled}" >
+                    <div *ngIf="f.email.touched && f.email.invalid" class="invalid-feedback">
+                        Email is required.
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="bookname">Your Book Name</label>
+                    <input id="bookname" type="text" formControlName="bookname" class="form-control" placeholder="Enter Your Book Name"
+                        [ngClass]="{'is-invalid': f.bookname.touched && f.bookname.invalid }">
+                    <div *ngIf="f.bookname.touched && f.bookname.invalid" class="invalid-feedback">
+                        Book Name is required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Your Message</label>
+                    <textarea class="form-control" formControlName="description" id="description"
+                        placeholder="Enter Your Message"></textarea>
+                    <div *ngIf="f.description.touched && f.description.invalid" class="invalid-feedback">
+                        Message is required.
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button class="btn btn-danger mt-3" (click)="cancel()">Cancle</button>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

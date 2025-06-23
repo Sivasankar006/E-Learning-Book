@@ -1,0 +1,56 @@
+<!-- src/app/login/login.component.html -->
+<app-header class="sticky-top"></app-header>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="form-container p-4 mt-5 mb-4">
+        <div class="form-header d-flex justify-content-between align-items-center">
+          <h2>Login</h2>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" class="form-control" formControlName="email" type="email">
+            <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').touched || loginForm.get('email').dirty)" class="text-danger">
+              <div *ngIf="loginForm.get('email').errors?.required">Email is required.</div>
+              <div *ngIf="loginForm.get('email').errors?.email">Enter a valid email.</div>
+            </div>
+          </div>
+          
+          <!-- <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" class="form-control" formControlName="password" type="password">
+            <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').touched || loginForm.get('password').dirty)" class="text-danger">
+              <div *ngIf="loginForm.get('password').errors?.required">Password is required.</div>
+              <div *ngIf="loginForm.get('password').errors?.minlength">Password should be at least 6 characters long.</div>
+            </div>
+          </div> -->
+
+          <div class="form-group position-relative">
+            <label for="password">Password:</label>
+            <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control" formControlName="password">
+            <i 
+              class="fa-solid" 
+              [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+              (click)="showPassword = !showPassword"
+              style="top: 38px; right: 10px; cursor: pointer; position: absolute;"></i>
+            <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').touched || loginForm.get('password').dirty)" class="text-danger">
+              <div *ngIf="loginForm.get('password').errors?.required">Password is required.</div>
+              <div *ngIf="loginForm.get('password').errors?.minlength">Password should be at least 6 characters long.</div>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+
+        <!-- Add the reset and forgot password links here -->
+        <div class="d-flex justify-content-between mt-3">
+          <a routerLink="/register" class="text-left no-underline">Register to your account</a>
+          <!-- <a routerLink="/forgot-password" class="text-right no-underline">Forgot Password?</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,42 @@
+<app-admin-header class="sticky-top"></app-admin-header>
+
+<div class="container">
+  <h2 class="text-white">Book List</h2>
+  <div class="d-flex justify-content-end mb-3">
+    <a routerLink="/add-books" class="btn btn-primary">Add Book</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books; index as i">
+          <td>{{ book.bookname }}</td>
+          <td>{{ book.category | titlecase }}</td>
+          <td>
+            <img class="imges" [src]="book.imgurl" alt="Image" />
+          </td>
+          <td>{{ book.price }}</td>
+          <td class="action-icons">
+            <button class="btn btn-sm btn-secondary me-2" (click)="editBook(book)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="deleteBook(i)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-footer></app-footer>

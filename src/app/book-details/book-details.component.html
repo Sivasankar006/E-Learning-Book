@@ -1,0 +1,16 @@
+<app-header class="sticky-top"></app-header>
+<div class="container mt-5 position-relative" id="div-to-download">
+    <div class="row justify-content-center">
+        <div class="card book-card mt-4">
+            <img [src]="book.imgurl" class="card-img-top book-img mx-auto d-block" alt="{{book.bookname}}">
+            <div class="card-body mt-3" style="background-color: whitesmoke;">
+                <h5 class="card-title">{{book.bookname}}</h5>
+                <p class="card-text">Price: ${{book.price}}</p>
+                <div class="card-text book-description" [innerHTML]="book.description"></div>
+            </div>
+        </div>
+    </div>
+    <!-- <button class="btn btn-primary download-btn mt-5" (click)="downloadDivContent()">Download Div Content</button> -->
+    <button class="btn btn-primary download-btn mt-5" routerLink="/home">Back To Home Page</button>
+
+</div>
